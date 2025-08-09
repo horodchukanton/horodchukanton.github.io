@@ -1,6 +1,6 @@
 # Anton Horodchuk's Personal Portfolio Website
 
-This is a GitHub Pages personal portfolio website built with static HTML, CSS, and JavaScript using the Bootstrap framework. The site displays Anton Horodchuk's professional skills, experience, and contact information.
+This is a GitHub Pages personal portfolio website built with static HTML and CSS using the Tailwind CSS framework. The site displays Anton Horodchuk's professional skills, experience, and contact information in a modern, professional design.
 
 Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
 
@@ -20,16 +20,17 @@ Always reference these instructions first and fallback to search or bash command
 
 ### Making Changes
 - Edit content directly in `index.html`
-- CSS framework is provided via `css/bootstrap.min.css` (Bootstrap 3.x)
-- JavaScript is provided via `js/bootstrap.min.js`
-- Font files are in the `fonts/` directory (Glyphicons)
+- Styling is provided via Tailwind CSS CDN and comprehensive fallback CSS
+- All styles are contained within the HTML file for simplicity
+- No external CSS or JavaScript files needed
 
 ### Testing Changes
 - Start local server: `python3 -m http.server 8000`
 - Navigate to `http://localhost:8000` in browser
-- Verify page loads correctly with Bootstrap styling
-- Check that all sections display: Skills, Additional, My Contacts
+- Verify page loads correctly with modern Tailwind CSS styling
+- Check that all sections display: Technical Skills (Programming Languages & Tools), Get In Touch
 - Ensure LinkedIn link works and opens in new tab
+- Test responsive design by resizing browser window
 
 ## Validation
 
@@ -44,21 +45,22 @@ ALWAYS run these validation steps after making any changes:
    - Opens instantly (< 1 second) - NEVER CANCEL
    - Open `http://localhost:8000` in browser
 
-2. **Check all assets load correctly**:
+2. **Check page loads correctly**:
    ```bash
-   curl -I http://localhost:8000/css/bootstrap.min.css  # Should return 200 OK
-   curl -I http://localhost:8000/js/bootstrap.min.js    # Should return 200 OK
+   curl -I http://localhost:8000  # Should return 200 OK
    ```
 
 3. **Verify complete page content**:
-   - User icon displays next to "Horodchuk Anton" heading
-   - Skills section lists: Perl, Java, Delphi, JavaScript, Groovy
-   - Additional section shows: Git, Gradle, SQL, HTML, CSS, Bootstrap, Agile
-   - LinkedIn link in "My Contacts" section works
+   - Professional hero section with gradient background and user icon
+   - Skills section displays as modern cards: Programming Languages & Tools/Technologies
+   - Programming skills show: Perl (5 years), JavaScript (3 years), Java (2 years), Groovy (2 years), Delphi (1 year)
+   - Tools section shows: Git, Gradle, SQL, HTML, CSS, Bootstrap, Agile
+   - "Get In Touch" section with LinkedIn call-to-action button
 
 4. **Test responsive design**:
-   - Resize browser window to test Bootstrap responsive layout
-   - Content should remain readable and well-formatted at different screen sizes
+   - Resize browser window to test mobile-first responsive layout
+   - Content should stack properly on smaller screens (single column on mobile)
+   - Hero section, cards, and buttons should adapt seamlessly across screen sizes
 
 ### No Linting or Testing Tools
 - There are no linting tools configured (eslint, prettier, etc.)
@@ -91,34 +93,27 @@ After pushing changes:
 ├── .github/
 │   └── copilot-instructions.md    # This file
 ├── .gitignore                     # JetBrains IDE ignores
-├── index.html                     # Main website content
-├── css/
-│   └── bootstrap.min.css          # Bootstrap 3.x CSS framework
-├── js/
-│   └── bootstrap.min.js           # Bootstrap 3.x JavaScript
-└── fonts/                         # Bootstrap Glyphicons fonts
-    ├── glyphicons-halflings-regular.eot
-    ├── glyphicons-halflings-regular.svg
-    ├── glyphicons-halflings-regular.ttf
-    ├── glyphicons-halflings-regular.woff
-    └── glyphicons-halflings-regular.woff2
+└── index.html                     # Main website content (contains all HTML, CSS, and styling)
 ```
 
 ### Key Files to Know
-- **`index.html`**: Main content file - edit this to change website content
-- **`css/bootstrap.min.css`**: Bootstrap framework styles - **DO NOT** modify
-- **`js/bootstrap.min.js`**: Bootstrap framework JavaScript - **DO NOT** modify
+- **`index.html`**: Main content file - contains all HTML, Tailwind CSS classes, and fallback styles
 - **`.gitignore`**: Configured for JetBrains IDEs - safe to modify if needed
+
+### Legacy Files (No Longer Used)
+The following directories may exist from previous Bootstrap implementation but are no longer needed:
+- **`css/`**: Previously contained Bootstrap CSS - not used with Tailwind implementation
+- **`js/`**: Previously contained Bootstrap JavaScript - not used with Tailwind implementation  
+- **`fonts/`**: Previously contained Glyphicons fonts - not used with Tailwind implementation
 
 ## External Dependencies
 
 ### CDN Resources
 The website uses these external CDN resources:
-- jQuery: `https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js`
-- HTML5 Shiv: `https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js`
-- Respond.js: `https://oss.maxcdn.com/respond/1.4.2/respond.min.js`
+- Tailwind CSS: `https://cdn.tailwindcss.com`
+- Google Fonts (Inter): `https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap`
 
-**Note**: Bootstrap JavaScript requires jQuery, but the site's styling works without it.
+**Important**: The site includes comprehensive fallback CSS that provides the complete design even if external CDN resources are blocked. The fallback styles replicate the entire Tailwind-based layout using vanilla CSS.
 
 ### No Package Managers
 - **DO NOT** run `npm install` - there is no package.json
@@ -133,10 +128,8 @@ The website uses these external CDN resources:
 python3 -m http.server 8000        # Python (recommended)
 npx serve .                        # Node.js alternative (if available)
 
-# Test asset availability:
-curl -I http://localhost:8000                        # HTML page
-curl -I http://localhost:8000/css/bootstrap.min.css  # CSS file
-curl -I http://localhost:8000/js/bootstrap.min.js    # JS file
+# Test page availability:
+curl -I http://localhost:8000       # HTML page should return 200 OK
 
 # View repository status:
 git status                         # Check current changes
@@ -161,8 +154,8 @@ git log --oneline -5              # View recent commits
 ## Troubleshooting
 
 ### Common Issues
-- **Bootstrap styling not applied**: Check that `css/bootstrap.min.css` is accessible
-- **Icons not displaying**: Verify fonts directory and files are present
+- **Tailwind styles not applied**: Check that `https://cdn.tailwindcss.com` is accessible; fallback CSS should still provide complete styling
+- **Modern design not displaying**: Verify the page content matches the new card-based layout with gradient header
 - **Local server not starting**: Ensure Python 3 is installed and port 8000 is available
 - **Changes not appearing on GitHub Pages**: Wait 3-5 minutes for deployment, check GitHub Actions
 
@@ -174,6 +167,6 @@ git log --oneline -5              # View recent commits
 ## CRITICAL REMINDERS
 - **NEVER CANCEL** the local server - it starts in less than 1 second
 - **DO NOT** look for build processes that don't exist
-- **ALWAYS** test changes locally before pushing
-- **NEVER** modify Bootstrap framework files (css/, js/, fonts/)
+- **ALWAYS** test changes locally before pushing  
 - **ALWAYS** validate the live GitHub Pages site after deployment
+- The site uses Tailwind CSS via CDN with comprehensive fallback styles for reliability
